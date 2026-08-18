@@ -1,0 +1,11 @@
+{
+  // Use the TypeScript in node_modules, not whatever the editor ships with.
+  //
+  // Without this the editor picks its own TypeScript, and a broken or removed
+  // TS extension takes every lib file with it — lib.dom, lib.es2023 — which
+  // leaves the language server with no global types at all. The result is a
+  // wall of "Cannot find global type 'Array'" on a project that compiles
+  // cleanly from the command line.
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}

@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ScanConfig",
+  "description": "Generated from shared/schema.ts by tools/gen-go-types.ts. Do not edit.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Path to this schema, for editor support."
+    },
+    "roots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Absolute roots to walk. Defaults to `[$HOME]`."
+    },
+    "minFileSize": {
+      "type": "integer",
+      "description": "Files at or above this many bytes are reported individually."
+    },
+    "minFolderSize": {
+      "type": "integer",
+      "description": "Folders whose recursive size is at or above this appear in the tree."
+    },
+    "topNPerExtension": {
+      "type": "integer",
+      "description": "Cap on individually reported files per extension."
+    },
+    "globalTopN": {
+      "type": "integer",
+      "description": "Cap on individually reported files overall."
+    },
+    "workerCount": {
+      "type": "integer",
+      "description": "Worker threads used for the walk."
+    },
+    "bundleExtensions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Directory extensions treated as one atomic item (`app`, `photoslibrary`)."
+    },
+    "compoundExtensions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Multi-segment extensions preserved whole (`tar.gz`)."
+    },
+    "categoryMap": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "video",
+          "image",
+          "audio",
+          "archive",
+          "diskimage",
+          "code",
+          "cache",
+          "document",
+          "binary",
+          "data",
+          "other"
+        ]
+      },
+      "description": "Extension -> category. Extensions absent here fall back to `other`."
+    },
+    "excludePaths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Absolute paths (or path prefixes) skipped entirely."
+    },
+    "followSymlinks": {
+      "type": "boolean",
+      "description": "Symlinks are never followed when false — cycles and double counting."
+    },
+    "crossFilesystems": {
+      "type": "boolean",
+      "description": "When false the walk stops at any `st_dev` change (mounts, network shares)."
+    },
+    "detectDuplicates": {
+      "type": "boolean",
+      "description": "Second pass that fingerprints files sharing an exact size, to find byte-identical groups (APFS clones and real duplicates alike)."
+    },
+    "duplicateMinSize": {
+      "type": "integer",
+      "description": "Only files at or above this size are considered for fingerprinting."
+    }
+  }
+}

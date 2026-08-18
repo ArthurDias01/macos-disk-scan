@@ -1,0 +1,146 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Dark-first: this is a tool you stare at while hunting through file listings.
+ * Light values exist so the app is not unusable in a bright room.
+ */
+:root {
+  --radius: 0.625rem;
+
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+
+  /* Category palette — one hue per file category, shared by every chart so a
+     colour means the same thing on the treemap and the bars. */
+  --cat-video: oklch(0.63 0.19 25);
+  --cat-image: oklch(0.72 0.16 65);
+  --cat-audio: oklch(0.75 0.15 95);
+  --cat-archive: oklch(0.7 0.15 145);
+  --cat-diskimage: oklch(0.66 0.15 195);
+  --cat-code: oklch(0.62 0.17 250);
+  --cat-cache: oklch(0.6 0.13 300);
+  --cat-document: oklch(0.68 0.13 340);
+  --cat-binary: oklch(0.58 0.09 210);
+  --cat-data: oklch(0.66 0.12 120);
+  --cat-other: oklch(0.55 0.02 260);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.185 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.185 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.235 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.235 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-cat-video: var(--cat-video);
+  --color-cat-image: var(--cat-image);
+  --color-cat-audio: var(--cat-audio);
+  --color-cat-archive: var(--cat-archive);
+  --color-cat-diskimage: var(--cat-diskimage);
+  --color-cat-code: var(--cat-code);
+  --color-cat-cache: var(--cat-cache);
+  --color-cat-document: var(--cat-document);
+  --color-cat-binary: var(--cat-binary);
+  --color-cat-data: var(--cat-data);
+  --color-cat-other: var(--cat-other);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+  /* Sizes, counts and paths are compared column-wise: keep digits aligned. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /*
+   * Menu entry runs as a CSS animation rather than a JS-toggled transition:
+   * requestAnimationFrame is throttled in an unfocused window, which left the
+   * menu stuck at opacity 0. CSS animations start on their own.
+   */
+  .menu-in {
+    animation: menu-in 150ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-in {
+      animation-duration: 1ms;
+    }
+  }
+}
