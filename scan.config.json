@@ -1,0 +1,7 @@
+{
+  "$schema": "./scan.config.schema.json",
+  "minFileSize": 104857600,
+  "minFolderSize": 524288000,
+  "categoryMap": {},
+  "excludePaths": []
+}

@@ -1,0 +1,26 @@
+node_modules/
+dist/
+.output/
+.nitro/
+.tanstack/
+.vite/
+src/routeTree.gen.ts
+
+# Snapshots map your personal file layout — they stay local. The index goes with
+# them: it carries this machine's totals and scan times, which is nobody else's
+# business either. A missing index is a first-run state the app handles.
+public/data/
+
+.DS_Store
+*.log
+
+# Agent settings, which are per-machine and occasionally hold local paths.
+.claude/
+.scan-cache/
+
+# Compiled Go scanner.
+bin/
+
+# The built SPA, copied here for go:embed by `bun run build`.
+internal/webui/assets/*
+!internal/webui/assets/.gitkeep
